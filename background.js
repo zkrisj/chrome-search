@@ -1,8 +1,3 @@
-const sendData = (data) => {
-	chrome.tabs.query({active: true,currentWindow: true}).then(tabs=>{
-		chrome.tabs.sendMessage(tabs[0].id, data)
-	});
-};
 chrome.contextMenus.create({
 	title: '搜索',
 	id: 'search',
@@ -38,9 +33,14 @@ chrome.contextMenus.create({
 	id: 'google',
 	contexts: ['all'],
 });
+const sendData = (data) => {
+	chrome.tabs.query({active: true,currentWindow: true}).then(tabs=>{
+		chrome.tabs.sendMessage(tabs[0].id, data)
+	});
+};
 // 点击弹出菜单
 chrome.contextMenus.onClicked.addListener(function(item, tab) {
-	if(tab.url !== 'chrome://extensions/') sendData(item);
+	if(!tab.url.startsWith('chrome://')) sendData(item);
 });
 // 点击扩展图标
 chrome.runtime.onMessage.addListener(function(data, sender, sendResponse) {

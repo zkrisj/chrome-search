@@ -1,4 +1,4 @@
-// 监听 background 传来的 数据 可对页面dom操作
+// 监听 background 传来的数据 可对页面dom操作
 chrome.runtime.onMessage.addListener((data, sender, sendResponse) => {
 	if (data.menuItemId) {
 		switch (data.menuItemId) {
