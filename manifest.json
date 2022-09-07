@@ -1,0 +1,30 @@
+{
+	"name": "搜索",
+	"description": "百度 必应 360 搜狗 谷歌",
+	"version": "1.0",
+	"manifest_version": 3,
+	"icons": {
+		"16": "img/icon.png",
+		"48": "img/icon.png",
+		"128": "img/icon.png"
+	},
+	"action": {
+		"default_icon": "img/icon.png",
+		"default_title": "搜索",
+		"default_popup": "index.html"
+	},
+	"background": {
+		"service_worker": "background.js"
+	},
+	"permissions": [
+    "notifications",
+		"contextMenus"
+	],
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content-script.js"],
+			"run_at": "document_idle"
+    }
+  ]
+}
