@@ -17,6 +17,6 @@ chrome.runtime.onMessage.addListener((data, sender, sendResponse) => {
 			default:
 				url = 'https://www.baidu.com/s?wd=';
 		}
-		window.open(data.selectionText ? url + data.selectionText : new URL(url).origin);
+		window.open(data.selectionText ? url + encodeURIComponent(data.selectionText) : new URL(url).origin);
 	}
 });
