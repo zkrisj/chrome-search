@@ -1,4 +1,4 @@
-chrome.runtime.onInstalled.addListener(() => {
+chrome.contextMenus.removeAll(() => {
   chrome.contextMenus.create({
   	title: '搜索',
   	id: 'search',
