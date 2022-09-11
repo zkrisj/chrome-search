@@ -11,6 +11,9 @@ chrome.runtime.onMessage.addListener((data, sender, sendResponse) => {
 			case 'sogou':
 				url = 'https://sogou.com/web?query=';
 				break;
+			case 'wiki':
+				url = 'https://zh.wikipedia.org/wiki/';
+				break;
 			case 'google':
 				url = 'https://www.google.com/search?q=';
 				break;
