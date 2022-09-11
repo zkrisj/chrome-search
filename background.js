@@ -41,18 +41,7 @@ chrome.contextMenus.removeAll(() => {
 		contexts: ['all'],
 	});
 });
-const sendData = (data) => {
-	chrome.tabs.query({ active: true, currentWindow: true }).then(tabs => {
-		chrome.tabs.sendMessage(tabs[0].id, data, function() {
-			if (chrome.runtime.lastError) console.log(chrome.runtime.lastError);
-		});
-	});
-};
 // 点击弹出菜单
 chrome.contextMenus.onClicked.addListener(function(item, tab) {
-	sendData(item);
-});
-// 点击扩展图标
-chrome.runtime.onMessage.addListener(function(data, sender, sendResponse) {
-	sendData(data);
+	chrome.tabs.sendMessage(tab.id, item, () => chrome.runtime.lastError);
 });
